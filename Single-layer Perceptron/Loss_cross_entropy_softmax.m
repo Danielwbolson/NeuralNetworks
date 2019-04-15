@@ -22,7 +22,7 @@ end
 
 % Now calculate L and dLdy
 L = sum(y.*log(y_tilde));
-dLdy = y./y_tilde;
+dLdy = transpose(y./y_tilde);
 
 end
 

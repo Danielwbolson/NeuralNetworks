@@ -1,0 +1,15 @@
+function [dLdx, dLdw, dLdb] = FC_backward(dLdy, x, w, b, y)
+
+% n = 196, m = 10
+
+% dLdx, 1xm
+dLdx = z * w;
+
+% dLdb, 1xn
+dLdb = z;
+
+% dLdw, 1x(mXn)
+dLdw = z * x;
+
+end
+

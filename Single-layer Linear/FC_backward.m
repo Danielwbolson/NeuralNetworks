@@ -2,26 +2,23 @@ function [dLdx, dLdw, dLdb] = FC_backward(dLdy, x, w, b, y)
 
 % n = 196, m = 10
 
+% dLdy = 1xm
 
-% L = (y - y_guess)^2
-% y_guess = wx + b
-%
-% L = (y - wx - b)^2
-% dLdy = 2(y - wx - b)
-% dLdx = -2(y - wx-b)w
-% dLdw = -2(y - wx - b)x
-% dLdb = -2(y - wx - b)
+% dLdx, 1xn
+dLdx = transpose(dLdy * w);
 
-z = -2*(y - (w*x + b));
+% dLdb, 1xm
+dLdb = transpose(dLdy * 1);
 
-% dLdx, 1xm
-dLdx = w.* z;
+% dLdw, 1x(mXn
+dYdw = zeros(length(dLdy), size(w,1)*size(w,2));
+for i = 1:size(dYdw, 1)
+    s_index = (i-1)*size(x, 1) + 1;
+    end_index = s_index + size(x, 1) - 1;
+    dYdw(i, (s_index:end_index)) = x(:);
+end
 
-% dLdb, 1xn
-dLdb = z;
-
-% dLdw, 1x(mXn)
-dLdw = z * x';
+dLdw = reshape(dLdy * dYdw, size(w));
 
 end
 
