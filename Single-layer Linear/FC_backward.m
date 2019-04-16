@@ -12,7 +12,6 @@ dLdb = transpose(dLdy * 1);
 % Create our 10 x 1960 matrix
 dYdw = zeros(length(dLdy), size(w,1)*size(w,2));
 
-a = x(:);
 % Put our x (img) at intervals inside our matrix
 % for each row, we move our img 196 columns to the right
 % we end up with a huge "diagonal" matrix
@@ -22,9 +21,11 @@ for i = 1:size(dYdw, 1)
     dYdw(i, (s_index:end_index)) = transpose(x(:));
 end
 
-% Multiply the matrices and turn our long vector into a 10x196 matrix
+% Multiply to get our dLdw in a 1x1960 vector
 dLdw = [];
 wVec = dLdy * dYdw;
+
+% Turn our long vector into a 10x196 matrix
 for i = 1:size(w, 1)
     s_index = (i-1)*size(w, 2)+1;
     end_index = i*size(w, 2);
