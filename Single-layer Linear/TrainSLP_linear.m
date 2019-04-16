@@ -30,7 +30,7 @@ for i = 1:nIters
         [L, dLdy] = Loss_euclidean(y_guess, y_actual);
         
         % Back propogate
-        [dLdx dLdw dLdb] = FC_backward(dLdy, img, w, b, y_actual);
+        [dLdx dLdw dLdb] = FC_backward(dLdy, img, w, b, y_guess);
         
         dLdw_grad = dLdw_grad + dLdw;
         dLdb_grad = dLdb_grad + dLdb;
@@ -43,8 +43,8 @@ for i = 1:nIters
     end
     
     % Update weights
-    w = w - learningRate*dLdw_grad/nIters;
-    b = b - learningRate*dLdb_grad/nIters;       
+    w = w - learningRate*dLdw_grad/size(mini_batch_x{k-1},2);
+    b = b - learningRate*dLdb_grad/size(mini_batch_x{k-1},2);       
     
 end
 

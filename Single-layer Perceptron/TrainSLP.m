@@ -1,6 +1,6 @@
 function [w, b] = TrainSLP(mini_batch_x, mini_batch_y)
 
-learningRate = 2;
+learningRate = 0.1;
 decayRate = 0.8;
 nIters = 10000;
 
@@ -11,7 +11,7 @@ k = 1;
 
 for i = 1:nIters
     % Every 1000 iterations, multiply by decay rate
-    if mod(i, 1000) == 0
+    if mod(i, 100) == 0
         learningRate = decayRate * learningRate;
     end
     dLdw_grad = 0; dLdb_grad = 0;
@@ -42,8 +42,8 @@ for i = 1:nIters
     end
     
     % Update weights
-    w = w - learningRate*dLdw_grad/nIters;
-    b = b - learningRate*dLdb_grad/nIters;       
+    w = w - learningRate*dLdw_grad/size(mini_batch_x{k},2);
+    b = b - learningRate*dLdb_grad/size(mini_batch_x{k},2);       
     
 end
 
