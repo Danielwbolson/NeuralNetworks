@@ -19,7 +19,7 @@ for iTest = 1 : size(im_test,2)
     x = im_test(:,iTest);
     
     pred1 = FC(x, w, b);
-    y = softmax(pred1);
+    y = SoftMax(pred1);
     
     [~,l] = max(y);
     confusion(label_test(iTest)+1, l) = confusion(label_test(iTest)+1, l) + 1;

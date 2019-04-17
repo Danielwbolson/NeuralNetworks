@@ -1,7 +1,10 @@
-function [outputArg1,outputArg2] = ReLu(inputArg1,inputArg2)
-%RELU Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [y] = ReLu(x)
+
+for i = 1:size(x, 1)
+    for k = 1:size(x, 2)
+        y(i, k) = max(0, x(i, k));
+    end
+end
+
 end
 

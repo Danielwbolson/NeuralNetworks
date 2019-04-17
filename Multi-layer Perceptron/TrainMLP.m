@@ -1,7 +1,6 @@
-function [outputArg1,outputArg2] = TrainMLP(inputArg1,inputArg2)
-%TRAINMLP Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [w1, b1, w2, b2] = TrainMLP(mini_batch_x, mini_batch_y)
+
+
+
 end
 

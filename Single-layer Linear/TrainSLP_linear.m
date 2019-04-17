@@ -2,7 +2,7 @@
 function [w, b] = TrainSLP_linear(mini_batch_x, mini_batch_y)
 
 learningRate = 0.01;
-decayRate = 0.5;
+decayRate = 0.9;
 nIters = 10000;
 
 % Random initial weights and bias

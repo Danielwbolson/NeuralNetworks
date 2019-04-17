@@ -1,8 +1,8 @@
 
 function [w, b] = TrainSLP(mini_batch_x, mini_batch_y)
 
-learningRate = 0.01;
-decayRate = 0.5;
+learningRate = 0.3;
+decayRate = 0.9;
 nIters = 10000;
 
 % Random initial weights and bias
