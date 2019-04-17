@@ -12,14 +12,14 @@ mini_batch_y = [];
 indices = randperm(size(im_train, 2));
 
 for i = 1:num_batch
-    images = [];
+    images = zeros(196, batch_size);
     labels = zeros(10, batch_size);
     for k = 1:batch_size
         % Get our random index to grab from
         train_index = indices((i-1)*batch_size + k);
         
         % Cache our image and label
-        images = [images im_train(:, train_index)];
+        images(:, k) = im_train(:, train_index);
         labels(label_train(:, train_index)+1, k) = 1;
     end
     % Store our mini batches

@@ -1,8 +1,8 @@
 
 function [w, b] = TrainSLP_linear(mini_batch_x, mini_batch_y)
 
-learningRate = 2;
-decayRate = 0.8;
+learningRate = 0.01;
+decayRate = 0.5;
 nIters = 10000;
 
 % Random initial weights and bias
@@ -12,10 +12,10 @@ k = 1;
 
 for i = 1:nIters
     % Every 1000 iterations, multiply by decay rate
-    if mod(i, 1000) == 0
+    if mod(i, 100) == 0
         learningRate = decayRate * learningRate;
     end
-    dLdw_grad = 0; dLdb_grad = 0;
+    dLdw = 0; dLdb = 0;
     
     % For each image inside our mini_batch
     for j = 1:size(mini_batch_x{k},2)
@@ -30,10 +30,10 @@ for i = 1:nIters
         [L, dLdy] = Loss_euclidean(y_guess, y_actual);
         
         % Back propogate
-        [dLdx dLdw dLdb] = FC_backward(dLdy, img, w, b, y_guess);
+        [dldx, dldw, dldb] = FC_backward(dLdy, img, w, b, y_actual);
         
-        dLdw_grad = dLdw_grad + dLdw;
-        dLdb_grad = dLdb_grad + dLdb;
+        dLdw = dLdw + dldw;
+        dLdb = dLdb + dldb;
     end
     
     % Loop over mini batches
@@ -43,8 +43,8 @@ for i = 1:nIters
     end
     
     % Update weights
-    w = w - learningRate*dLdw_grad/size(mini_batch_x{k-1},2);
-    b = b - learningRate*dLdb_grad/size(mini_batch_x{k-1},2);       
+    w = w - (learningRate/size(mini_batch_x{k}, 2))*dLdw;
+    b = b - (learningRate/size(mini_batch_x{k}, 2))*dLdb;       
     
 end
 
