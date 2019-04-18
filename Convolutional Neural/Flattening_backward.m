@@ -1,7 +1,6 @@
-function [outputArg1,outputArg2] = Flattening_backward(inputArg1,inputArg2)
-%FLATTENING_BACKWARD Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [dLdx] = Flattening_backward(dLdy, x, y)
+
+dLdx = reshape(dLdy .* y, size(x));
+
 end
 

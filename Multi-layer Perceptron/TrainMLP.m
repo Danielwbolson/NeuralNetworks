@@ -33,11 +33,11 @@ for i = 1:nIters
         [L, dLdy] = Loss_cross_entropy_softmax(a2, y_actual);
         
         % Back propogate for w2 and b2
-        [da2df1, da2dw2, da2db2] = FC_backward(dLdy, f1, w2, b2, y_actual);
+        [da2df1, da2dw2, da2db2] = FC_backward(dLdy, f1, w2, b2, a2);
         
         % Back propogate for w1 and b1
         [df1da1] = ReLu_backward(da2df1, f1, a2);
-        [da1dx, da1dw1, da1db1] = FC_backward(df1da1, img, w1, w2, y_actual);
+        [da1dx, da1dw1, da1db1] = FC_backward(df1da1, img, w1, w2, a1);
         
         
         dLdw1 = dLdw1 + da1dw1;

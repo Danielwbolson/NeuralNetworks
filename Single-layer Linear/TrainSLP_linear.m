@@ -1,7 +1,7 @@
 
 function [w, b] = TrainSLP_linear(mini_batch_x, mini_batch_y)
 
-learningRate = 0.01;
+learningRate = 0.05;
 decayRate = 0.9;
 nIters = 10000;
 
@@ -12,7 +12,7 @@ k = 1;
 
 for i = 1:nIters
     % Every 1000 iterations, multiply by decay rate
-    if mod(i, 100) == 0
+    if mod(i, 1000) == 0
         learningRate = decayRate * learningRate;
     end
     dLdw = 0; dLdb = 0;
