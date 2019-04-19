@@ -12,5 +12,7 @@ for i = 1:size(b_conv)
     dLdb(i) = sum(mat(:));
 end
 
+dLdb = transpose(dLdb);
+
 end
 
